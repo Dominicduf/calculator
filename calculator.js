@@ -22,7 +22,50 @@ function operate(num1,num2,operator) {
             return substract(num1,num2);
         case "/":
             return divide(num1,num2);
-        case "x":
+        case "*":
             return multiply(num1,num2);
     }
 }
+
+
+function main() {
+    const buttons = document.querySelectorAll("button");
+    const display = document.getElementById("display");
+    let displayValue = "";
+    let previousValue = "";
+    let operator = ""
+    let operators = ["+","-","/","*"];
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            let currentClick = button.value
+            if (currentClick === "=") {
+
+                
+                display.textContent = operate(Number(previousValue),Number(displayValue),operator);
+
+            } else if (operators.includes(currentClick) === false) {
+
+                // Continue to regiter the number
+                displayValue = displayValue + button.value;
+                display.textContent = displayValue;
+
+            } else if(operators.includes(currentClick) === true) {
+
+                operator = currentClick;
+                previousValue = displayValue;
+                display.textContent = "";
+                displayValue = "";
+                console.log(previousValue);
+
+            }
+        });
+    });
+}
+
+
+
+main()
+
+
