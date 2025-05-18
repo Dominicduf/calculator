@@ -43,6 +43,7 @@ function main() {
             let currentClick = button.value
 
             if (currentClick == "clear") {
+                // clear
                 displayValue = "";
                 previousValue = ""
                 operator = "";
@@ -50,15 +51,17 @@ function main() {
                 display.textContent = "";
 
             } else if(operators.includes(currentClick) === false) {
-
+                // Add numbers to the display
                 displayValue = displayValue + currentClick;
                 display.textContent = displayValue;
 
             } else {
+
                 previousOperator = operator
                 operator = currentClick;
         
                 if (previousValue == ""){
+                    // First operation
                     if (operator =="="){
                         displayValue = "";
                         previousValue = ""
@@ -70,7 +73,7 @@ function main() {
                         display.textContent = "";
                     }
                 } else if (displayValue == ""){
-            
+                    // Do nothing when you click an operator after having a result
                 } else {
                     console.log("previousValue = "+previousValue)
                     console.log("operator = "+previousOperator)
